@@ -1,0 +1,130 @@
+body {
+    background: #dad299;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #dad299, #b0dab9);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #dad299, #b0dab9);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.banner {
+    font-family: AbeeZee;
+    color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-bottom: 70px;
+    margin-top: 30px; */
+    font-size: 60px;
+}
+
+.btn {
+    margin: 1% auto;
+    display: flex;
+}
+
+.button {
+    font-family: AbeeZee;
+    width: 1000%;
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: #5d6d7e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    transition: all 0.5s;
+    cursor: pointer;
+    /* top: 100px; */
+}
+
+.playlist {
+    width: 30px;
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: #5d6d7e;
+    border: none;
+    color: #FFFFFF;
+    /* text-align: center; */
+    font-size: 18px;
+    padding: 20px;
+    transition: all 0.5s;
+    cursor: pointer;
+    top: 100px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.canvas {
+    position: absolute;
+    top: 44%;
+    left: 40%;
+    width: 60%;
+}
+
+#player {
+    top: 9%;
+    width: 30%;
+}
+
+#player img {
+    cursor: pointer;
+}
+
+.w3-table-all {
+    text-align: center;
+}
+
+.button-2 {
+    font-size: 12px;
+    font-family: AbeeZee;
+    /* width: 1000%; */
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: #5d6d7e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    /* font-size: 18px; */
+    padding: 10px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.volume-slider {
+    position: relative;
+    width: 115px;
+    margin-left: 5px;
+    top: 5px;
+}
+
+.list-select {
+    font-size: 18px;
+    background-color: black;
+    color: wheat;
+    border: none;
+}
