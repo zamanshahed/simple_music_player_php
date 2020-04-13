@@ -21,16 +21,28 @@ var nextSongTitle = document.getElementById('nextSongTitle');
 var song = new Audio();
 var currentSong = 0;
 
-window.onload = loadSong;
+// window.onload = playSong;
 
-function loadSong() {
-    song.src = "../songs/" + songs[currentSong];
-    songTitle.textContent = (currentSong + 1) + ". " + songs[currentSong];
-    nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs[currentSong + 1 % songs.length];
-    song.playbackRate = 1;
+// function loadSong() {
+//     song.src = "songs/" + songs[currentSong];
+//     songTitle.textContent = (currentSong + 1) + ". " + songs[currentSong];
+//     nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs[currentSong + 1 % songs.length];
+//     song.playbackRate = 1;
+//     song.volume = volumeSlider.value;
+//     song.play();
+//     setTimeout(showDuration, 1000);
+// }
+
+function playSong(songId) {
+
+    song.src = songUrl;
+    songTitle.textContent = (songId) + ". " + songName;
+    // nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs[currentSong + 1 % songs.length];
+    // song.playbackRate = 1;
     song.volume = volumeSlider.value;
     song.play();
     setTimeout(showDuration, 1000);
+    alert(songName);
 }
 
 setInterval(updateSongSlider, 1000);
@@ -62,10 +74,10 @@ function playOrPauseSong(img) {
     song.playbackRate = 1;
     if (song.paused) {
         song.play();
-        img.src = "images/pause.png";
+        img.src = "img/pause.png";
     } else {
         song.pause();
-        img.src = "images/play.png";
+        img.src = "img/play.png";
     }
 }
 
@@ -95,4 +107,14 @@ function increasePlaybackRate() {
 
 function decreasePlaybackRate() {
     songs.playbackRate -= 0.5;
+}
+var songUrl = 'hello there';
+
+function testOne(songId) {
+    alert(phpVars[0]);
+}
+
+function flash(one) {
+    var x = "<?php echo $dummy; ?>";
+    alert(x)
 }
