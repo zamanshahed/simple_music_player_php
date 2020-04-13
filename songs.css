@@ -13,6 +13,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    top: -10%;
     /* margin-bottom: 70px;
     margin-top: 30px; */
     font-size: 60px;
@@ -81,8 +82,8 @@ body {
 
 .canvas {
     position: absolute;
-    top: 44%;
-    left: 40%;
+    top: 54%;
+    left: 50%;
     width: 60%;
 }
 
@@ -93,10 +94,6 @@ body {
 
 #player img {
     cursor: pointer;
-}
-
-.w3-table-all {
-    text-align: center;
 }
 
 .button-2 {
@@ -130,8 +127,8 @@ body {
 }
 
 .audio-player-cont {
-    width: 450px;
-    height: 145px;
+    width: 580px;
+    height: 190px;
     background: #f3ebdc;
     box-shadow: 0 0 6px 2px #c7a8a8;
     color: #003ba9;

@@ -16,8 +16,9 @@
 	}
 
 	.header {
+		
 		background-color: #f1f1f1;
-		padding: 10px;
+		padding: 2px;
 		text-align: center;
 	}
 
@@ -70,6 +71,7 @@
 
 	<div id="navbar">
 		<a class="active" href="javascript:void(0)">LOGOUT</a>
+		<a class="active" href="uploader.php">UPLOADER</a>
 
 		<select class="list-select">
 			<option value="">ALL SONGS</option>
@@ -83,7 +85,7 @@
 	<div id="player">
 		<div class="audio-player-cont">
 			<div class="logo">
-				<img id="poster" src="img/nothing.png" width="100px;" />
+				<img id="poster" src="img/nothing.png" width="240px;" height="190px" style="margin-left: 2px;"/>
 			</div>
 			<div class="player">
 				<div id="songTitle" class="song-title">Song title goes here</div>
@@ -93,16 +95,17 @@
 					<div id="duration" class="duration">00:00</div>
 				</div>
 				<div class="controllers">
-					<img src="img/previous.png" width="30px" onclick="previous();" />
+					<img src="img/previous.png" style="margin-top: 15px;" width="30px" onclick="previous();" />
 					<!-- <img src="images/backward.png" width="30px" onclick="decreasePlaybackRate();" /> -->
-					<img src="img/play.png" width="40px" onclick="playOrPauseSong(this);" />
+					<img id="play" src="img/play.png" width="40px" style="margin-top: 15px;" onclick="playOrPauseSong(this);" />
 					<!-- <img src="images/forward.png" width="30px" onclick="increasePlaybackRate();" /> -->
-					<img src="img/next.png" width="30px" onclick="next();" />
-					<img src="img/volume.png" width="15px" />
-					<input id="volumeSlider" class="volume-slider" type="range" min="0" max="1" step="0.01" onchange="adjustVolume()" />
+					<img src="img/next.png" width="30px" onclick="next();" style="margin-top: 15px;" />
+					<img src="img/volume.png" width="35px" style="margin-top: 15px; margin-left:13px;" />
+					<input id="volumeSlider" style="margin-top: 15px;" class="volume-slider" type="range" min="0" max="1" step="0.01" onchange="adjustVolume()" />
 					<!-- <img src="images/volume-up.png" width="15px" style="margin-left:2px;" /> -->
 				</div>
-				<!-- <div id="nextSongTitle" class="song-title"><b>Next Song :</b>Next song title goes here...</div> -->
+				<div id="nextSongTitle" class="song-title"><b>Next Song :</b>Next song title goes here...</div>
+				<div id="songRating" class="song-title"><b>Song Rating :</b>Song Rating goes here...</div>
 			</div>
 		</div>
 		<!-- <script type="text/javascript" src="player.js"></script> -->
@@ -126,7 +129,7 @@
 
 				include_once('connection.php');
 
-				$sql = "SELECT `song_url`, (`song_id`-1) AS `song_id`, `song_name`, `artist`,`poster` FROM `song_list` GROUP BY `song_id` ASC";
+				$sql = "SELECT `song_url`, (`song_id`-2) AS `song_id`, `song_id`-1 AS serial, `song_name`, `artist`,`poster` FROM `song_list` GROUP BY `song_id` ASC";
 
 				if ($result = mysqli_query($con, $sql)) {
 					// echo "Query Executed"; 
@@ -134,11 +137,12 @@
 					while ($row = mysqli_fetch_array($result)) {
 						$items = $row;
 						echo "
-							<div class='col-md-3'>
-								<a href='JavaScript:playSong("  . $row['song_id'] . ")' class='album_poster'>
-								<img src='" . $row['poster'] . "' width='300px' height='auto'>
-								</a>
-								<h4>" . $row['song_id'] . " ." . $row['song_name'] . " - " . $row['artist'] . "</h4>
+							<div >
+								<a href='JavaScript:playSong("  . $row['song_id'] . ")' class='button'>
+								<img src='" . $row['poster'] . "' height='100px' width='auto'>								
+								<label class='button'>" . $row['serial'] . " ." . $row['song_name'] . " - " . $row['artist'] . "</label></a>
+								<br>
+								<br>
 								<br>
 							</div>
 							
@@ -183,7 +187,6 @@
 						window.onload = showData();
 						function showData() {
 							console.log('showData started...')
-							
 							var js_data = <?php echo json_encode($valueMap); ?>;
 							var js_data2 = <?php echo json_encode($urlMap); ?>;
 
@@ -216,34 +219,35 @@
 					var currentTime = document.getElementById('currentTime');
 					var duration = document.getElementById('duration');
 					var volumeSlider = document.getElementById('volumeSlider');
-					// var nextSongTitle = document.getElementById('nextSongTitle');
+					var nextSongTitle = document.getElementById('nextSongTitle');
 
 					var song = new Audio();
 					var currentSong = 0;
 
-					window.onload = loadSong;
+					window.onload = playSong(0);
 
-					function loadSong() {
-						document.getElementById("poster").src = poster[currentSong];
-						song.src = "songs/" + songs[currentSong];
-						songTitle.textContent = (currentSong + 1) + ". " + songs[currentSong];
-						// nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs[currentSong + 1 % songs.length];
-						song.playbackRate = 1;
-						song.volume = volumeSlider.value;
-						song.play();
-						setTimeout(showDuration, 1000);
-					}
+					// function loadSong(songId) {
+					// 	currentSong = sognId-1;
+					// 	document.getElementById("poster").src = poster[currentSong];
+					// 	song.src = songs2[currentSong];
+					// 	songTitle.textContent = (currentSong + 1) + ". " + songs2[currentSong];
+					// 	// nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs[currentSong + 1 % songs.length];
+					// 	song.playbackRate = 1;
+					// 	song.volume = volumeSlider.value;
+					// 	song.play();
+					// 	setTimeout(showDuration, 1000);
+					// }
 
 					function playSong(songId) {
-						alert(songs2[songId-1]);
-						currentSong = songId - 1;
+						currentSong = songId;
 						song.src = songs2[currentSong];
 						document.getElementById("poster").src = poster[currentSong];
 						songTitle.textContent = (currentSong + 1) + ". " + songs2[currentSong].substring(6);
-						// nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs[currentSong + 1 % songs.length];
+						nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs[currentSong + 1 % songs.length];
 						song.playbackRate = 1;
 						song.volume = volumeSlider.value;
 						song.play();
+						document.getElementById("play").src = "img/pause.png";
 						setTimeout(showDuration, 1000);
 					}
 
@@ -286,14 +290,14 @@
 					function next() {
 						currentSong = currentSong + 1 % songs.length;
 						document.getElementById("poster").src = poster[currentSong+1];
-						loadSong();
+						playSong(currentSong);
 					}
 
 					function previous() {
 						currentSong--;
 						currentSong = (currentSong < 0) ? songs.length - 1 : currentSong;
 						document.getElementById("poster").src = poster[currentSong];
-						loadSong();
+						playSong(currentSong);
 					}
 
 					function seekSong() {
