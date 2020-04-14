@@ -131,7 +131,7 @@
 
 				$items = [];
 
-				// session_start();
+				session_start();
 
 				include_once('connection.php');
 
