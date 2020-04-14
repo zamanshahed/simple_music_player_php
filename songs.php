@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>WAVE</title>
 	<link href="https://fonts.googleapis.com/css?family=ABeeZee|Trade+Winds&display=swap" rel="stylesheet">
-
+	<link rel="icon" href="img/icon.png" type="" sizes="26x26">
 	<link rel="stylesheet" type="text/css" href="songs.css">
 </head>
 <style>
