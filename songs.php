@@ -42,9 +42,13 @@
 		color: black;
 	}
 
-	#navbar a.active {
-		background-color: #4CAF50;
+	#navbar a.active1 {
+		background-color: red;
 		color: white;
+	}
+	#navbar a.active {
+		background-color: #4fffd6;
+		color: black;
 	}
 
 	.content {
@@ -70,13 +74,14 @@
 	</div>
 
 	<div id="navbar">
-		<a class="active" href="javascript:void(0)">LOGOUT</a>
+		<a class="active1" href="javascript:void(0)">LOGOUT</a>
 		<a class="active" href="uploader.php">UPLOADER</a>
 
-		<select class="list-select">
-			<option value="">ALL SONGS</option>
+		<select class="list-select" onchange="location = this.value;">
+			<option value="">SELECT PLAYLIST</option>
 			<option value="">LISTEN LATER</option>
 			<option value="">FAVOURITES</option>
+			<option value="http://google.com">ALL SONGS</option>
 		</select>
 
 		<!-- <a href="javascript:void(0)">Contact</a> -->
@@ -142,6 +147,19 @@
 								<a href='JavaScript:playSong("  . $row['song_id'] . ")' class='button'>
 								<img src='" . $row['poster'] . "' height='90px' width='120px'>								
 								<label class='button'>" . $row['serial'] . " ." . $row['song_name'] . " - " . $row['artist'] . "</label></a>
+								<select class='playlist'>
+									<option value=''>ADD TO...</option>
+									<option value='later'>LISTEN LATER</option>
+									<option value='fav'>FAVOURITES</option>
+								</select>
+								<select class='rating'>
+									<option value=''>Rate</option>
+									<option value='later'>1</option>
+									<option value='later'>2</option>
+									<option value='later'>3</option>
+									<option value='later'>4</option>
+									<option value='later'>5</option>
+								</select>
 								<br>
 								<br>
 								<br>
