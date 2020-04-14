@@ -139,7 +139,7 @@
 						echo "
 							<div >
 								<a href='JavaScript:playSong("  . $row['song_id'] . ")' class='button'>
-								<img src='" . $row['poster'] . "' height='100px' width='auto'>								
+								<img src='" . $row['poster'] . "' height='90px' width='120px'>								
 								<label class='button'>" . $row['serial'] . " ." . $row['song_name'] . " - " . $row['artist'] . "</label></a>
 								<br>
 								<br>

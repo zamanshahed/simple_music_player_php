@@ -83,8 +83,8 @@ body {
 .canvas {
     position: absolute;
     top: 54%;
-    left: 50%;
-    width: 60%;
+    left: 45%;
+    width: 50%;
 }
 
 #player {

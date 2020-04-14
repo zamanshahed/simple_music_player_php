@@ -49,6 +49,6 @@
 		<input type="submit" value="submit" name="submit">
 
 	</form>
-
+	<a href="songs.php">HOME</a>
 </body>
 </html>
