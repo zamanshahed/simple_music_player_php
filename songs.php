@@ -85,10 +85,11 @@
 	<div id="player">
 		<div class="audio-player-cont">
 			<div class="logo">
-				<img id="poster" src="img/nothing.png" width="240px;" height="190px" style="margin-left: 2px;"/>
+				<img id="poster" src="img/nothing.png" width="270px;" height="210px" style="margin-left: 2px;"/>
 			</div>
 			<div class="player">
 				<div id="songTitle" class="song-title">Song title goes here</div>
+				<div id="songArtist" class="song-title">Song artist goes here</div>
 				<input id="songSlider" class="song-slider" type="range" min="0" step="1" onchange="seekSong()" />
 				<div>
 					<div id="currentTime" class="current-time">00:00</div>
@@ -161,11 +162,22 @@
 					ini_set('display_errors', 'On');
 					$valueMap = array();
 					$urlMap = array();
+					$artistMap = array();
+					$ratinMap = array();
 					// session_start();
 
 					include_once('connection.php');
 
-					$sql = "SELECT `song_url`, (`song_id`-1) AS `song_id`, `song_name`, `artist`,`poster` FROM `song_list` GROUP BY `song_id` ASC";
+					$sql = "SELECT 
+								`song_url`, 
+								(`song_id`-1) AS `song_id`, 
+								`song_name`, 
+								`artist`,
+								`poster`, 
+								`rating` 
+							FROM `song_list` 
+							GROUP BY `song_id` ASC
+						";
 
 					if ($result = mysqli_query($con, $sql)) {
 						// echo "Query Executed"; 
@@ -174,6 +186,8 @@
 							$items = $row;
 							$valueMap[] = array($row['song_url']);
 							$urlMap[] = array($row['poster']);
+							$artistMap[] = array($row['artist']);
+							$ratinMap[] = array($row['rating']);
 						}
 					} else {
 						echo "Error in execution";
@@ -184,42 +198,52 @@
 					<script>
 						var songs2 = [""];
 						var poster = [""];
+						var artist = [""];
+						var rating = [""];
 						window.onload = showData();
 						function showData() {
 							console.log('showData started...')
 							var js_data = <?php echo json_encode($valueMap); ?>;
 							var js_data2 = <?php echo json_encode($urlMap); ?>;
+							var js_data3 = <?php echo json_encode($artistMap); ?>;
+							var js_data4 = <?php echo json_encode($ratinMap); ?>;
 
 							songs2 = js_data.toString().split(',');
 							poster = js_data2.toString().split(',');
+							artist = js_data3.toString().split(',');
+							rating = js_data4.toString().split(',');
 							
 							for (var i = 0; i < songs2.length; i++) {
-								console.log(songs2[i]);
-								console.log(poster[i]);
+								// console.log(songs2[i]);
+								// console.log(poster[i]);
+								// console.log(artist[i]);
+								console.log(rating[i]);
 							}
 						}
-					var songs = [
-						"Mama - Jonas Blue ft. William Singe.mp3",
-						"On My Way - Alan Walker, Sabrina Carpenter and Farruko.mp3",
-						"Payphone - Maroon 5 ft. Wiz Khalifa.mp3",
-						"Unmistakable - Backstreet Boys.mp3",
-						"Nil Doriya - Bohubrihi BandCover.mp3",
-						"Shironamhin - Hashimukh [Official Audio].mp3",
-						"Bondho Janala - Shironamhin.mp3",
-						"Warfaze-Purnata.mp3",
-						"Alan Walker - Darkside.mp3",
-						"Alan Walker & K-391 - Ignite  ft. Julie Bergan & Seungri.mp3",
-						"Dua Lipa - New Rules.mp3",
-						"Nick Jonas - Find You.mp3",
-						"The Chainsmokers - All We Know ft. Phoebe Ryan.mp3"
-					];
+					// var songs = [
+					// 	"Mama - Jonas Blue ft. William Singe.mp3",
+					// 	"On My Way - Alan Walker, Sabrina Carpenter and Farruko.mp3",
+					// 	"Payphone - Maroon 5 ft. Wiz Khalifa.mp3",
+					// 	"Unmistakable - Backstreet Boys.mp3",
+					// 	"Nil Doriya - Bohubrihi BandCover.mp3",
+					// 	"Shironamhin - Hashimukh [Official Audio].mp3",
+					// 	"Bondho Janala - Shironamhin.mp3",
+					// 	"Warfaze-Purnata.mp3",
+					// 	"Alan Walker - Darkside.mp3",
+					// 	"Alan Walker & K-391 - Ignite  ft. Julie Bergan & Seungri.mp3",
+					// 	"Dua Lipa - New Rules.mp3",
+					// 	"Nick Jonas - Find You.mp3",
+					// 	"The Chainsmokers - All We Know ft. Phoebe Ryan.mp3"
+					// ];
 
 					var songTitle = document.getElementById('songTitle');
+					var songArtist = document.getElementById('songArtist');
 					var songSlider = document.getElementById('songSlider');
 					var currentTime = document.getElementById('currentTime');
 					var duration = document.getElementById('duration');
 					var volumeSlider = document.getElementById('volumeSlider');
 					var nextSongTitle = document.getElementById('nextSongTitle');
+					var songRating = document.getElementById('songRating');
 
 					var song = new Audio();
 					var currentSong = 0;
@@ -243,7 +267,9 @@
 						song.src = songs2[currentSong];
 						document.getElementById("poster").src = poster[currentSong];
 						songTitle.textContent = (currentSong + 1) + ". " + songs2[currentSong].substring(6);
-						nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs[currentSong + 1 % songs.length];
+						songArtist.textContent = "Artist: " + artist[currentSong];
+						nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs2[currentSong + 1 % songs2.length].substring(6);
+						songRating.innerHTML = "<b>Song Rating: </b>" + rating[currentSong];
 						song.playbackRate = 1;
 						song.volume = volumeSlider.value;
 						song.play();
@@ -288,14 +314,14 @@
 					}
 
 					function next() {
-						currentSong = currentSong + 1 % songs.length;
+						currentSong = currentSong + 1 % songs2.length;
 						document.getElementById("poster").src = poster[currentSong+1];
 						playSong(currentSong);
 					}
 
 					function previous() {
 						currentSong--;
-						currentSong = (currentSong < 0) ? songs.length - 1 : currentSong;
+						currentSong = (currentSong < 0) ? songs2.length - 1 : currentSong;
 						document.getElementById("poster").src = poster[currentSong];
 						playSong(currentSong);
 					}
@@ -309,24 +335,24 @@
 						song.volume = volumeSlider.value;
 					}
 
-					function increasePlaybackRate() {
-						songs.playbackRate += 0.5;
-					}
+					// function increasePlaybackRate() {
+					// 	songs.playbackRate += 0.5;
+					// }
 
-					function decreasePlaybackRate() {
-						songs.playbackRate -= 0.5;
-					}
-					var songUrl = 'hello there';
+					// function decreasePlaybackRate() {
+					// 	songs.playbackRate -= 0.5;
+					// }
+					// var songUrl = 'hello there';
 
-					function testOne(songId) {
-						alert(phpVars[0]);
-					}
+					// function testOne(songId) {
+					// 	alert(phpVars[0]);
+					// }
 
-					function flash(one) {
-						var x = "<?php echo $items[0] ?>";
-						alert("From songs.php: " + x);
+					// function flash(one) {
+					// 	var x = "<?php echo $items[0] ?>";
+					// 	alert("From songs.php: " + x);
 
-					}
+					// }
 				</script>
 
 			</div>

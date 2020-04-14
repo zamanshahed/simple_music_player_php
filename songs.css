@@ -33,7 +33,7 @@ body {
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     padding: 10px;
     transition: all 0.5s;
     cursor: pointer;
@@ -83,7 +83,7 @@ body {
 .canvas {
     position: absolute;
     top: 54%;
-    left: 45%;
+    left: 50%;
     width: 50%;
 }
 
@@ -127,8 +127,8 @@ body {
 }
 
 .audio-player-cont {
-    width: 580px;
-    height: 190px;
+    width: 600px;
+    height: 210px;
     background: #f3ebdc;
     box-shadow: 0 0 6px 2px #c7a8a8;
     color: #003ba9;
