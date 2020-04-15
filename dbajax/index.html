@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
 
 <head>
     <meta charset="UTF-8">
@@ -12,8 +20,8 @@
     <form action="">
         <select name="songs" id="drop-box" onchange="showSongList(this.value)">
             <option value="">Select Option</option>
-            <option value="one">id one</option>
-            <option value="two">id two</option>
+            <option value="Mama">id one</option>
+            <option value="Purnata">id two</option>
         </select>
     </form>
     <br>
@@ -33,7 +41,7 @@
                     document.getElementById('txtHint').innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "getsong.php");
+            xhttp.open("GET", "getsong.php?q=" + str, true);
             xhttp.send();
         };
     </script>
