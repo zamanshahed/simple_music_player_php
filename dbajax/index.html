@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX DATABASE</title>
+</head>
+
+<body>
+    <h1>Database Testing:</h1>
+    <form action="">
+        <select name="songs" id="drop-box" onchange="showSongList(this.value)">
+            <option value="">Select Option</option>
+            <option value="one">id one</option>
+            <option value="two">id two</option>
+        </select>
+    </form>
+    <br>
+    <div id="txtHint">
+        song info loading...
+    </div>
+    <script>
+        function showSongList(str) {
+            var xhttp;
+            if (str == "") {
+                document.getElementById('txtHint').innerHTML = "Select option again to load..";
+                return;
+            }
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById('txtHint').innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "getsong.php");
+            xhttp.send();
+        };
+    </script>
+</body>
+
+</html>
