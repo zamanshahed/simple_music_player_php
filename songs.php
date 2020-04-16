@@ -135,7 +135,7 @@
 
 				include_once('connection.php');
 
-				$sql = "SELECT `song_url`, (`song_id`-2) AS `song_id`, `song_id`-1 AS serial, `song_name`, `artist`,`poster` FROM `song_list` GROUP BY `song_id` ASC";
+				$sql = "SELECT `song_url`, (`song_id`-2) AS `song_id`, `song_id`-1 AS serial, `song_id` AS rate_serial, `song_name`, `artist`,`poster` FROM `song_list` GROUP BY `song_id` ASC";
 
 				if ($result = mysqli_query($con, $sql)) {
 					// echo "Query Executed"; 
@@ -152,14 +152,32 @@
 									<option value='later'>LISTEN LATER</option>
 									<option value='fav'>FAVOURITES</option>
 								</select>
-								<select class='rating'>
+								<select class='rating' onchange='showSongList(this.value, "  . $row['rate_serial'] . ")'>
 									<option value=''>Rate</option>
-									<option value='later'>1</option>
-									<option value='later'>2</option>
-									<option value='later'>3</option>
-									<option value='later'>4</option>
-									<option value='later'>5</option>
+									<option value='1'>1</option>
+									<option value='2'>2</option>
+									<option value='3'>3</option>
+									<option value='4'>4</option>
+									<option value='5'>5</option>
 								</select>
+								<script>
+									function showSongList(str, id) {
+										var xhttp;
+										if (str == '') {
+											document.getElementById('txtHint').innerHTML = 'Select option again to load';
+											return;
+										}
+										xhttp = new XMLHttpRequest();
+										xhttp.onreadystatechange = function() {
+											if (this.readyState == 4 && this.status == 200) {
+												document.getElementById('txtHint').innerHTML = this.responseText;
+											}
+										};
+										xhttp.open('GET', 'dbajax/getsong.php?q=' + str + '&id=' + id, true);
+										xhttp.send();
+										alert('UPDATED..!');
+									};
+								</script>
 								<br>
 								<br>
 								<br>
