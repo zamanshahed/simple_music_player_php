@@ -22,7 +22,7 @@ session_start();
             if(mysqli_fetch_assoc($result))
             {
                 $_SESSION['User']=$name;
-                header("location:wave.php");
+                header("location:songs.php");
             }
             else
             {

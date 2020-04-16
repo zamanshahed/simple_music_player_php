@@ -175,7 +175,7 @@
 										};
 										xhttp.open('GET', 'dbajax/getsong.php?q=' + str + '&id=' + id, true);
 										xhttp.send();
-										alert('UPDATED..!');
+										alert('RATING UPDATED..!');
 									};
 								</script>
 								<br>
