@@ -1,3 +1,10 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['use'])){		//if the session is not present then force login
+		header('location:index.php');
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +23,7 @@
 	}
 
 	.header {
-		
+
 		background-color: #f1f1f1;
 		padding: 2px;
 		text-align: center;
@@ -46,6 +53,7 @@
 		background-color: red;
 		color: white;
 	}
+
 	#navbar a.active {
 		background-color: #4fffd6;
 		color: black;
@@ -74,7 +82,7 @@
 	</div>
 
 	<div id="navbar">
-		<a class="active1" href="javascript:void(0)">LOGOUT</a>
+		<a class="active1" href="logout.php">LOGOUT</a>
 		<a class="active" href="uploader.php">UPLOADER</a>
 
 		<select class="list-select" onchange="location = this.value;">
@@ -90,7 +98,7 @@
 	<div id="player">
 		<div class="audio-player-cont">
 			<div class="logo">
-				<img id="poster" src="img/nothing.png" width="270px;" height="210px" style="margin-left: 2px;"/>
+				<img id="poster" src="img/nothing.png" width="270px;" height="210px" style="margin-left: 2px;" />
 			</div>
 			<div class="player">
 				<div id="songTitle" class="song-title">Song title goes here</div>
@@ -130,8 +138,6 @@
 				<?php
 
 				$items = [];
-
-				session_start();
 
 				include_once('connection.php');
 
@@ -192,19 +198,19 @@
 
 				?>
 
-					<?php
-					## Turn on error reporting
-					error_reporting(-1);
-					ini_set('display_errors', 'On');
-					$valueMap = array();
-					$urlMap = array();
-					$artistMap = array();
-					$ratinMap = array();
-					// session_start();
+				<?php
+				## Turn on error reporting
+				error_reporting(-1);
+				ini_set('display_errors', 'On');
+				$valueMap = array();
+				$urlMap = array();
+				$artistMap = array();
+				$ratinMap = array();
+				// session_start();
 
-					include_once('connection.php');
+				include_once('connection.php');
 
-					$sql = "SELECT 
+				$sql = "SELECT 
 								`song_url`, 
 								(`song_id`-1) AS `song_id`, 
 								`song_name`, 
@@ -215,47 +221,48 @@
 							GROUP BY `song_id` ASC
 						";
 
-					if ($result = mysqli_query($con, $sql)) {
-						// echo "Query Executed"; 
-						// loop will iterate until all data is fetched 
-						while ($row = mysqli_fetch_array($result)) {
-							$items = $row;
-							$valueMap[] = array($row['song_url']);
-							$urlMap[] = array($row['poster']);
-							$artistMap[] = array($row['artist']);
-							$ratinMap[] = array($row['rating']);
-						}
-					} else {
-						echo "Error in execution";
+				if ($result = mysqli_query($con, $sql)) {
+					// echo "Query Executed"; 
+					// loop will iterate until all data is fetched 
+					while ($row = mysqli_fetch_array($result)) {
+						$items = $row;
+						$valueMap[] = array($row['song_url']);
+						$urlMap[] = array($row['poster']);
+						$artistMap[] = array($row['artist']);
+						$ratinMap[] = array($row['rating']);
 					}
-					// print_r($valueMap);
-					?>
-					<!-- <button onclick="{showData()}">CLICK</button> -->
-					<script>
-						var songs2 = [""];
-						var poster = [""];
-						var artist = [""];
-						var rating = [""];
-						window.onload = showData();
-						function showData() {
-							console.log('showData started...')
-							var js_data = <?php echo json_encode($valueMap); ?>;
-							var js_data2 = <?php echo json_encode($urlMap); ?>;
-							var js_data3 = <?php echo json_encode($artistMap); ?>;
-							var js_data4 = <?php echo json_encode($ratinMap); ?>;
+				} else {
+					echo "Error in execution";
+				}
+				// print_r($valueMap);
+				?>
+				<!-- <button onclick="{showData()}">CLICK</button> -->
+				<script>
+					var songs2 = [""];
+					var poster = [""];
+					var artist = [""];
+					var rating = [""];
+					window.onload = showData();
 
-							songs2 = js_data.toString().split(',');
-							poster = js_data2.toString().split(',');
-							artist = js_data3.toString().split(',');
-							rating = js_data4.toString().split(',');
-							
-							for (var i = 0; i < songs2.length; i++) {
-								// console.log(songs2[i]);
-								// console.log(poster[i]);
-								// console.log(artist[i]);
-								console.log(rating[i]);
-							}
+					function showData() {
+						console.log('showData started...')
+						var js_data = <?php echo json_encode($valueMap); ?>;
+						var js_data2 = <?php echo json_encode($urlMap); ?>;
+						var js_data3 = <?php echo json_encode($artistMap); ?>;
+						var js_data4 = <?php echo json_encode($ratinMap); ?>;
+
+						songs2 = js_data.toString().split(',');
+						poster = js_data2.toString().split(',');
+						artist = js_data3.toString().split(',');
+						rating = js_data4.toString().split(',');
+
+						for (var i = 0; i < songs2.length; i++) {
+							// console.log(songs2[i]);
+							// console.log(poster[i]);
+							// console.log(artist[i]);
+							console.log(rating[i]);
 						}
+					}
 					// var songs = [
 					// 	"Mama - Jonas Blue ft. William Singe.mp3",
 					// 	"On My Way - Alan Walker, Sabrina Carpenter and Farruko.mp3",
@@ -351,7 +358,7 @@
 
 					function next() {
 						currentSong = currentSong + 1 % songs2.length;
-						document.getElementById("poster").src = poster[currentSong+1];
+						document.getElementById("poster").src = poster[currentSong + 1];
 						playSong(currentSong);
 					}
 
