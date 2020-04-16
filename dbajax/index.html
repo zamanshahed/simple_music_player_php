@@ -20,8 +20,11 @@
     <form action="">
         <select name="songs" id="drop-box" onchange="showSongList(this.value)">
             <option value="">Select Option</option>
-            <option value="Mama">id one</option>
-            <option value="Purnata">id two</option>
+            <option value="1">one</option>
+            <option value="2">two</option>
+            <option value="3">three</option>
+            <option value="4">four</option>
+            <option value="5">five</option>
         </select>
     </form>
     <br>
@@ -43,6 +46,7 @@
             };
             xhttp.open("GET", "getsong.php?q=" + str, true);
             xhttp.send();
+            alert('UPDATED..!');
         };
     </script>
 </body>
