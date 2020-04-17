@@ -8,7 +8,7 @@ if (isset($_SESSION['use'])) {	//checking if user is already logged in, if so, r
 if (isset($_POST['login'])) {		//when the user clicked login button..
 	$user = $_POST['user'];
 	$password = md5($_POST['password']);
-	$sql = "SELECT * from waver where name = '$user' and pass = '$password' ";
+	$sql = "SELECT id from waver where name = '$user' and pass = '$password' ";
 	$result = mysqli_query($con, $sql);
 
 	if (mysqli_fetch_assoc($result)) {

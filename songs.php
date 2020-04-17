@@ -157,12 +157,14 @@
 								<a href='JavaScript:playSong("  . $row['song_id'] . ")' class='button'>
 								<img src='" . $row['poster'] . "' height='90px' width='120px'>								
 								<label class='button'>" . $row['serial'] . " ." . $row['song_name'] . " - " . $row['artist'] . "</label></a>
-								<select class='playlist'>
+								
+								<select class='playlist' onChange='addToList("  . $_SESSION['use'] . ", this.value, "  . $row['rate_serial'] . ")'>
 									<option value=''>ADD TO...</option>
-									<option value='later'>LISTEN LATER</option>
-									<option value='fav'>FAVOURITES</option>
+									<option value='1'>LISTEN LATER</option>
+									<option value='2'>FAVOURITES</option>
 								</select>
-								<select class='rating' onchange='showSongList(this.value, "  . $row['rate_serial'] . ")'>
+
+								<select class='rating' onchange='rateSong(this.value, "  . $row['rate_serial'] . ")'>
 									<option value=''>Rate</option>
 									<option value='1'>1</option>
 									<option value='2'>2</option>
@@ -171,7 +173,7 @@
 									<option value='5'>5</option>
 								</select>
 								<script>
-									function showSongList(str, id) {
+									function rateSong(str, id) {
 										var xhttp;
 										if (str == '') {
 											document.getElementById('txtHint').innerHTML = 'Select option again to load';
@@ -186,6 +188,22 @@
 										xhttp.open('GET', 'dbajax/getsong.php?q=' + str + '&id=' + id, true);
 										xhttp.send();
 										alert('RATING UPDATED..!');
+									};
+
+									function addToList( user_name, list_id, song_id) {
+										var xhttp;
+										if (list_id == '') {
+											return;
+										}
+										xhttp = new XMLHttpRequest();
+										xhttp.onreadystatechange = function() {
+											if (this.readyState == 4 && this.status == 200) {
+												document.getElementById('txtHint').innerHTML = this.responseText;
+											}
+										};
+										xhttp.open('GET', 'addtolist.php?u=' + user_name + '&l=' + list_id + '&s=' + song_id, true);
+										xhttp.send();
+										alert('ADDED TO PLAYLIST..!');
 									};
 								</script>
 								<br>
