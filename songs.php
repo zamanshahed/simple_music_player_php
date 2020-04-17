@@ -82,7 +82,11 @@
 	</div>
 
 	<div id="navbar">
-		<a class="active1" href="logout.php">LOGOUT</a>
+		<a class="active1" href="logout.php">LOGOUT 
+			(<?php
+				echo $_SESSION['use'] ;
+			?>)
+		</a>
 		<a class="active" href="uploader.php">UPLOADER</a>
 
 		<select class="list-select" onchange="location = this.value;">
