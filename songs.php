@@ -79,6 +79,9 @@
 	<div class="header">
 		<h2 class="banner">WAVE STREAMING</h2>
 		<p>Scroll down and play a song!</p>
+		<div id="txtHint">
+			song info loading...
+		</div>
 	</div>
 
 	<div id="navbar">
@@ -158,7 +161,7 @@
 								<img src='" . $row['poster'] . "' height='90px' width='120px'>								
 								<label class='button'>" . $row['serial'] . " ." . $row['song_name'] . " - " . $row['artist'] . "</label></a>
 								
-								<select class='playlist' onChange='addToList("  . $_SESSION['use'] . ", this.value, "  . $row['rate_serial'] . ")'>
+								<select class='playlist' onChange='addToList(admin, this.value, 5)'>
 									<option value=''>ADD TO...</option>
 									<option value='1'>LISTEN LATER</option>
 									<option value='2'>FAVOURITES</option>
@@ -173,6 +176,22 @@
 									<option value='5'>5</option>
 								</select>
 								<script>
+									function addToList(user_name, list_id, song_id) {
+										var xhttp;
+										if (list_id == '') {
+											return;
+										}
+										xhttp = new XMLHttpRequest();
+										xhttp.onreadystatechange = function() {
+											if (this.readyState == 4 && this.status == 200) {
+												document.getElementById('txtHint').innerHTML = this.responseText;
+											}
+										};
+										xhttp.open('GET', 'addtolist.php?u=' + user_name + '&l=' + list_id + '&s=' + song_id, true);
+										xhttp.send();
+										// alert('ADDED TO PLAYLIST..!');
+									};
+									
 									function rateSong(str, id) {
 										var xhttp;
 										if (str == '') {
@@ -190,21 +209,21 @@
 										alert('RATING UPDATED..!');
 									};
 
-									function addToList( user_name, list_id, song_id) {
-										var xhttp;
-										if (list_id == '') {
-											return;
-										}
-										xhttp = new XMLHttpRequest();
-										xhttp.onreadystatechange = function() {
-											if (this.readyState == 4 && this.status == 200) {
-												document.getElementById('txtHint').innerHTML = this.responseText;
-											}
-										};
-										xhttp.open('GET', 'addtolist.php?u=' + user_name + '&l=' + list_id + '&s=' + song_id, true);
-										xhttp.send();
-										alert('ADDED TO PLAYLIST..!');
-									};
+									// function addToList( user_name, list_id, song_id) {
+									// 	var xhttp;
+									// 	if (list_id == '') {
+									// 		return;
+									// 	}
+									// 	xhttp = new XMLHttpRequest();
+									// 	xhttp.onreadystatechange = function() {
+									// 		if (this.readyState == 4 && this.status == 200) {
+									// 			document.getElementById('txtHint').innerHTML = this.responseText;
+									// 		}
+									// 	};
+									// 	xhttp.open('GET', 'addtolist.php?u=' + user_name + '&l=' + list_id + '&s=' + song_id, true);
+									// 	xhttp.send();
+									// 	alert('ADDED TO PLAYLIST..!');
+									// };
 								</script>
 								<br>
 								<br>
