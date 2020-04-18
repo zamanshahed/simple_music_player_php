@@ -1,4 +1,21 @@
 <?php
+    include_once('connection.php');
+    // echo "OK..!<br>";
+    $user_name = $_GET['u'];
+    $user_id = 0;
+    $list_id = $_GET['l'];
+    
+    $sql1 = "SELECT id FROM `waver` WHERE name = '$user_name'";
+    $result1 = mysqli_query($con,$sql1);
+
+    while ($row = $result1->fetch_assoc()) {
+    $user_id =  $row['id'];
+    }
+    echo "
+        user id: $user_id <br> list id: $list_id
+    ";
+?>
+<?php
 	session_start();
 	if(!isset($_SESSION['use'])){		//if the session is not present then force login
 		header('location:index.php');
@@ -152,9 +169,26 @@
 
 				$items = [];
 
-				include_once('connection.php');
+                include_once('connection.php');
+                $user_name = $_GET['u'];
+                $user_id = 0;
+                $list_id = $_GET['l'];
+                
+                $sql1 = "SELECT id FROM `waver` WHERE name = '$user_name'";
+                $result1 = mysqli_query($con,$sql1);
 
-				$sql = "SELECT `song_url`, (`song_id`-2) AS `song_id`, `song_id`-1 AS serial, `song_id` AS rate_serial, `song_name`, `artist`,`poster` FROM `song_list` GROUP BY `song_id` ASC";
+                while ($row = $result1->fetch_assoc()) {
+                $user_id =  $row['id'];
+                }
+
+				$sql = "SELECT `song_url`, (`song_id`-2) AS `song_id`, `song_id`-1 AS serial, `song_id` AS rate_serial, `song_name`, `artist`,`poster`
+                FROM `song_list` 
+                WHERE song_id IN (
+                    SELECT song_id
+                    FROM waving
+                    WHERE waving.user_id = $user_id AND waving.list_id = $list_id
+                )
+                GROUP BY `song_id` ASC";
 
 				if ($result = mysqli_query($con, $sql)) {
 					// loop will iterate until all data is fetched 
@@ -165,7 +199,7 @@
 								<a href='JavaScript:playSong("  . $row['song_id'] . ")' class='button'>
 									<img src='" . $row['poster'] . "' height='90px' width='120px'>								
 									<label class='button'>
-										" . $row['serial'] . " ." . $row['song_name'] . " - " . $row['artist'] . "
+										" . $row['song_name'] . " - " . $row['artist'] . "
 									</label>
 								</a>
 								
@@ -254,8 +288,13 @@
 								`artist`,
 								`poster`, 
 								`rating` 
-							FROM `song_list` 
-							GROUP BY `song_id` ASC
+							    FROM `song_list` 
+                                WHERE song_id IN (
+                                    SELECT song_id
+                                    FROM waving
+                                    WHERE waving.user_id = 1 AND waving.list_id = 2
+                                )
+                                GROUP BY `song_id` ASC
 						";
 
 				if ($result = mysqli_query($con, $sql)) {
