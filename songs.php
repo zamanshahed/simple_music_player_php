@@ -79,9 +79,9 @@
 	<div class="header">
 		<h2 class="banner">WAVE STREAMING</h2>
 		<p>Scroll down and play a song!</p>
-		<div id="txtHint">
+		<!-- <div id="txtHint">
 			song info loading...
-		</div>
+		</div> -->
 	</div>
 
 	<div id="navbar">
@@ -151,21 +151,21 @@
 				$sql = "SELECT `song_url`, (`song_id`-2) AS `song_id`, `song_id`-1 AS serial, `song_id` AS rate_serial, `song_name`, `artist`,`poster` FROM `song_list` GROUP BY `song_id` ASC";
 
 				if ($result = mysqli_query($con, $sql)) {
-					// echo "Query Executed"; 
 					// loop will iterate until all data is fetched 
 					while ($row = mysqli_fetch_array($result)) {
 						$items = $row;
 						echo "
 							<div >
 								<a href='JavaScript:playSong("  . $row['song_id'] . ")' class='button'>
-								<img src='" . $row['poster'] . "' height='90px' width='120px'>								
-								<label class='button'>" . $row['serial'] . " ." . $row['song_name'] . " - " . $row['artist'] . "</label></a>
+									<img src='" . $row['poster'] . "' height='90px' width='120px'>								
+									<label class='button'>
+										" . $row['serial'] . " ." . $row['song_name'] . " - " . $row['artist'] . "
+									</label>
+								</a>
 								
-								<select class='playlist' onChange='addToList(admin, this.value, 5)'>
-									<option value=''>ADD TO...</option>
-									<option value='1'>LISTEN LATER</option>
-									<option value='2'>FAVOURITES</option>
-								</select>
+								<a href='addplaylist.php?u=" . $_SESSION['use'] . "&s=" . $row['rate_serial'] . "' target='_blank' class='playlist'>
+									+
+								</a>
 
 								<select class='rating' onchange='rateSong(this.value, "  . $row['rate_serial'] . ")'>
 									<option value=''>Rate</option>
@@ -208,22 +208,6 @@
 										xhttp.send();
 										alert('RATING UPDATED..!');
 									};
-
-									// function addToList( user_name, list_id, song_id) {
-									// 	var xhttp;
-									// 	if (list_id == '') {
-									// 		return;
-									// 	}
-									// 	xhttp = new XMLHttpRequest();
-									// 	xhttp.onreadystatechange = function() {
-									// 		if (this.readyState == 4 && this.status == 200) {
-									// 			document.getElementById('txtHint').innerHTML = this.responseText;
-									// 		}
-									// 	};
-									// 	xhttp.open('GET', 'addtolist.php?u=' + user_name + '&l=' + list_id + '&s=' + song_id, true);
-									// 	xhttp.send();
-									// 	alert('ADDED TO PLAYLIST..!');
-									// };
 								</script>
 								<br>
 								<br>
@@ -304,22 +288,6 @@
 							console.log(rating[i]);
 						}
 					}
-					// var songs = [
-					// 	"Mama - Jonas Blue ft. William Singe.mp3",
-					// 	"On My Way - Alan Walker, Sabrina Carpenter and Farruko.mp3",
-					// 	"Payphone - Maroon 5 ft. Wiz Khalifa.mp3",
-					// 	"Unmistakable - Backstreet Boys.mp3",
-					// 	"Nil Doriya - Bohubrihi BandCover.mp3",
-					// 	"Shironamhin - Hashimukh [Official Audio].mp3",
-					// 	"Bondho Janala - Shironamhin.mp3",
-					// 	"Warfaze-Purnata.mp3",
-					// 	"Alan Walker - Darkside.mp3",
-					// 	"Alan Walker & K-391 - Ignite  ft. Julie Bergan & Seungri.mp3",
-					// 	"Dua Lipa - New Rules.mp3",
-					// 	"Nick Jonas - Find You.mp3",
-					// 	"The Chainsmokers - All We Know ft. Phoebe Ryan.mp3"
-					// ];
-
 					var songTitle = document.getElementById('songTitle');
 					var songArtist = document.getElementById('songArtist');
 					var songSlider = document.getElementById('songSlider');

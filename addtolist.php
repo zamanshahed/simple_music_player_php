@@ -33,6 +33,11 @@ UPDATE
     AND list_id = '$list_id'
     AND song_id='$song_id'
 ";
+$stmt  = $mysqli->prepare($sql2);
+// $stmt->bind_param('ii', $_GET['q'], $_GET['id']);
+$stmt->execute();
+$stmt->close();
+echo "Success 2..!";
    
 $sql3 ="
 INSERT INTO
@@ -50,9 +55,13 @@ INSERT INTO
         SELECT * FROM waving WHERE user_id = '$user_id' AND list_id = '$list_id' AND song_id = '$song_id'
     )
 ";
+$stmt  = $mysqli->prepare($sql3);
+// $stmt->bind_param('ii', $_GET['q'], $_GET['id']);
+$stmt->execute();
+$stmt->close();
+echo "Success 3..!";
+// $result2 = mysqli_query($con,$sql2);
 
-$result2 = mysqli_query($con,$sql2);
-
-$result3 = mysqli_query($con,$sql3);
+// $result3 = mysqli_query($con,$sql3);
   
 ?>
