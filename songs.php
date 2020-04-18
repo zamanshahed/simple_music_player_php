@@ -163,8 +163,14 @@
 									</label>
 								</a>
 								
-								<a href='addplaylist.php?u=" . $_SESSION['use'] . "&s=" . $row['rate_serial'] . "' target='_blank' class='playlist'>
-									+
+								<a href='
+									addplaylist.php?
+										u=" . $_SESSION['use'] . "
+										&s=" . $row['rate_serial'] . "
+										&t=" . $row['song_name'] . "
+									'
+									target='_blank' class='playlist'>
+									
 								</a>
 
 								<select class='rating' onchange='rateSong(this.value, "  . $row['rate_serial'] . ")'>

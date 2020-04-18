@@ -2,9 +2,11 @@
     echo "User: ";
     $user = $_GET['u'];
     echo $user;
-    echo "<br>Song id: ";
+    // echo "<br>Song id: ";
     $song_id = $_GET['s'];
-    echo $song_id;
+    // echo $song_id;
+    $song_title = $_GET['t'];
+    echo "<br> <h2> Song: $song_title </h2>";
 ?>
 
     <!DOCTYPE html>
@@ -25,22 +27,39 @@
     </head>
 
     <body>
-        <h1>Database Testing: PLAYLIST</h1>
+        <h1>WAVE: PLAYLIST</h1>
         <form action="">
             <select name="songs" id="drop-box" onChange="addToList('<?php echo $user ?>', this.value, <?php echo $song_id ?>)">
-            <option value="">Add to playlist</option>
+            <option value="" selected>Add to playlist</option>
+            <option value="newList">CREATE NEW LIST</option>
             <option value="1">LISTEN LATER</option>
             <option value="2">FAVORITE</option>
         </select>
         </form>
         <br>
         <div id="txtHint">
-            song info loading...
+            song info...
         </div>
+
+        <div id="newList" style="display: none">
+            <form action="">
+                <input type="text" placeholder="Playlist name">
+                <input type="submit" value="CREATE">
+            </form>
+        </div>
+
         <script>
             function addToList(user_name, list_id, song_id) {
                 var xhttp;
+                var x = document.getElementById('newList');
                 if (list_id == '') {
+                    document.getElementById('txtHint').innerHTML = "Select option again to load..";
+                    x.style.display='none';
+                    return;
+                }
+                if (list_id == 'newList') {
+                    document.getElementById('txtHint').innerHTML = "Enter Playlist Name";
+                    x.style.display='block';
                     return;
                 }
                 xhttp = new XMLHttpRequest();
