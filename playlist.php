@@ -292,7 +292,7 @@
                                 WHERE song_id IN (
                                     SELECT song_id
                                     FROM waving
-                                    WHERE waving.user_id = 1 AND waving.list_id = 2
+                                    WHERE waving.user_id = $user_id AND waving.list_id = $list_id
                                 )
                                 GROUP BY `song_id` ASC
 						";
