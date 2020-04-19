@@ -1,0 +1,74 @@
+body {
+    background: #606c88;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3f4c6b, #606c88);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+input {
+    font-size: 20px;
+    padding: 5px;
+    width: 105%;
+    height: 35px;
+    margin: 3% auto;
+    border-radius: 5px;
+    color: white;
+    background-color: #203A43;
+}
+
+.banner {
+    position: absolute;
+    letter-spacing: 12px;
+    left: 20%;
+    font-family: Bitsumishi;
+    color: #e74c3c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+}
+
+.canvas {
+    position: absolute;
+    left: 40%;
+    top: 35%;
+}
+
+.btn {
+    background-color: #2C5364;
+    height: 25px;
+    width: 105px;
+    border: none;
+    border-radius: 5px;
+    color: #e74c3c;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-bottom: 20px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: #aab7b8;
+    color: black;
+    border: 2px solid #2C5364;
+}
+
+.btn:hover {
+    background-color: #2C5364;
+    color: white;
+}
+
+a {
+    position: fixed;
+    top: 92%;
+    left: 40%;
+    font-family: Bitsumishi;
+    letter-spacing: 9px;
+    width: 15%;
+    height: 20px;
+    font-size: 45px;
+}

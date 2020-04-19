@@ -35,21 +35,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="//db.onlinewebfonts.com/c/f518e4e7999e3a3b645a9605c23e2cf6?family=Bitsumishi" rel="stylesheet" type="text/css"/> 
+	<link href="https://fonts.googleapis.com/css?family=ABeeZee|Trade+Winds&display=swap" rel="stylesheet">
 	<title>Upload Songs</title>
+	<link rel="stylesheet" href="uploader.css">
 </head>
 <body>
 
-	<form action="uploader.php" method="post" enctype="multipart/form-data">
-		<input type="text" name="song_name" placeholder="Song Name" required> <br>
-		<input type="text" name="artist" placeholder="Artist" required> <br>
-		<input type="text" name="poster" placeholder="Poster Url" required> <br>
-		
-		<input type="file" name="f" required> <br>
-		
-		<input type="submit" class="btn" value="submit" name="submit">
+		<h1 class="banner">WAVE : UPLOADER</h1>
 
-	</form>
-	<a href="songs.php">HOME</a>
+	<div class="canvas">
+		<form action="uploader.php" method="post" enctype="multipart/form-data">
+			<input type="text" name="song_name" placeholder="Song Name" required> <br>
+			<input type="text" name="artist" placeholder="Artist" required> <br>
+			<input type="text" name="poster" placeholder="Poster Url" required> <br>
+			
+			<input type="file" name="f" required> <br>
+			
+			<input type="submit" class="btn" value="submit" name="submit">
+
+		</form>
+	</div>
+	
+	<a class="btn" href="javascript:window.close();">BACK</a>
 
 	<style>
 		input{

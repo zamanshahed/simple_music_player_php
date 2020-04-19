@@ -96,7 +96,7 @@
 				echo $_SESSION['use'] ;
 			?>)
 		</a>
-		<a class="active" href="uploader.php">UPLOADER</a>
+		<a class="active" href="uploader.php" target="windw.open()">UPLOADER</a>
 		<!-- href='
 									addplaylist.php?
 										u=" . $_SESSION['use'] . "
