@@ -15,12 +15,12 @@ $result1 = mysqli_query($con,$sql1);
 while ($row = $result1->fetch_assoc()) {
   $user_id =  $row['id'];
 }
-echo $user_id;
-echo "<br> moving for sql2 with values: 
-  ".$user_id."
-  ".$list_id."
-  ".$song_id."
-";
+// echo $user_id;
+// echo "<br> moving for sql2 with values: 
+//   ".$user_id."
+//   ".$list_id."
+//   ".$song_id."
+// ";
 $sql2 = "
 UPDATE
     waving
@@ -37,7 +37,7 @@ $stmt  = $mysqli->prepare($sql2);
 // $stmt->bind_param('ii', $_GET['q'], $_GET['id']);
 $stmt->execute();
 $stmt->close();
-echo "Success 2..!";
+// echo "Success 2..!";
    
 $sql3 ="
 INSERT INTO
@@ -59,9 +59,7 @@ $stmt  = $mysqli->prepare($sql3);
 // $stmt->bind_param('ii', $_GET['q'], $_GET['id']);
 $stmt->execute();
 $stmt->close();
-echo "Success 3..!";
+echo "Song Added Successfully..!";
 // $result2 = mysqli_query($con,$sql2);
-
-// $result3 = mysqli_query($con,$sql3);
-  
+// $result3 = mysqli_query($con,$sql3);  
 ?>

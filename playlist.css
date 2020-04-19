@@ -1,9 +1,110 @@
 body {
-    background: #0F2027;
+    background: #606c88;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    background: linear-gradient(to right, #3f4c6b, #606c88);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+input {
+    font-size: 20px;
+    padding: 5px;
+    width: 105%;
+    height: 35px;
+    margin: 3% auto;
+    border-radius: 5px;
+    color: white;
+    background-color: #203A43;
+}
+
+.list-select {
+    position: absolute;
+    left: 43%;
+    top: 30%;
+    font-family: AbeeZee;
+    height: 48px;
+    font-size: 18px;
+    background-color: #21618c;
+    color: black;
+    border: none;
+}
+
+.banner {
+    position: absolute;
+    letter-spacing: 12px;
+    left: 20%;
+    font-family: Bitsumishi;
+    color: #e74c3c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+}
+
+#txtHint {
+    font-family: Bitsumishi;
+    font-size: 34px;
+    letter-spacing: 12px;
+    position: absolute;
+    color: #e74c3c;
+    left: 27%;
+    top: 42%;
+}
+
+#songInfo {
+    position: absolute;
+    top: 45%;
+    left: 30%;
+    font-family: AbeeZee;
+}
+
+#songInfo h4 {
+    position: absolute;
+    top: 47%;
+    left: 30%;
+    font-family: AbeeZee;
+}
+
+#newList {
+    position: absolute;
+    left: 35%;
+    top: 65%;
+}
+
+.btn {
+    background-color: #2C5364;
+    height: 55px;
+    width: 105%;
+    border: none;
+    border-radius: 5px;
+    color: #e74c3c;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-bottom: 20px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: #aab7b8;
+    color: black;
+    border: 2px solid #2C5364;
+}
+
+.btn:hover {
+    background-color: #2C5364;
+    color: white;
+}
+
+.button a {
+    position: fixed;
+    top: 88%;
+    left: 40%;
+    font-family: Bitsumishi;
+    letter-spacing: 9px;
+    width: 15%;
+    height: 20px;
+    font-size: 25px;
 }
