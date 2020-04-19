@@ -25,8 +25,9 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>WAVE</title>
+	<title>WAVE:PLAYLIST</title>
 	<link href="https://fonts.googleapis.com/css?family=ABeeZee|Trade+Winds&display=swap" rel="stylesheet">
+	<link href="//db.onlinewebfonts.com/c/f518e4e7999e3a3b645a9605c23e2cf6?family=Bitsumishi" rel="stylesheet" type="text/css"/> 
 	<link rel="icon" href="img/icon.png" type="" sizes="26x26">
 	<link rel="stylesheet" type="text/css" href="songs.css">
 </head>
@@ -38,8 +39,6 @@
 	}
 
 	.header {
-
-		background-color: #f1f1f1;
 		padding: 2px;
 		text-align: center;
 	}
@@ -92,11 +91,17 @@
 <body>
 
 	<div class="header">
-		<h2 class="banner">WAVE STREAMING</h2>
-		<p>Scroll down and play a song!</p>
-		<!-- <div id="txtHint">
-			song info loading...
-		</div> -->
+		<h1 class="banner" >W A V E</h1>
+		<p style="
+			color:darkorange;
+			font-family: arial;
+			font-size:15px;
+			letter-spacing:3px;
+			font-weight:bold;
+		">music is what feeling sounds like !</p>
+		<video id="videoBG" autoplay muted loop>
+			<source src="video/bg.mp4" type="video/mp4">
+		</video>
 	</div>
 
 	<div id="navbar">
@@ -137,6 +142,10 @@
 					<div id="duration" class="duration">00:00</div>
 				</div>
 				<div class="controllers">
+					<video id="playerBG" autoplay muted loop>
+						<source src="video/plbg.mp4" type="video/mp4">
+					</video>
+
 					<img src="img/previous.png" style="margin-top: 15px;" width="30px" onclick="previous();" />
 					<!-- <img src="images/backward.png" width="30px" onclick="decreasePlaybackRate();" /> -->
 					<img id="play" src="img/play.png" width="40px" style="margin-top: 15px;" onclick="playOrPauseSong(this);" />
@@ -462,15 +471,19 @@
 
 		var navbar = document.getElementById("navbar");
 		var player = document.getElementById("player");
+		var playerBG = document.getElementById("playerBG");
 		var sticky = navbar.offsetTop;
+		var sticky2 = playerBG.offsetTop;
 
 		function myFunction() {
-			if (window.pageYOffset >= sticky) {
+			if (window.pageYOffset >=sticky) {
 				navbar.classList.add("sticky")
 				player.classList.add("sticky")
+				playerBG.style.top=0;
 			} else {
 				navbar.classList.remove("sticky");
 				player.classList.remove("sticky");
+				playerBG.style.top='320px';
 			}
 		}
 	</script>

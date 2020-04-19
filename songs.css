@@ -8,15 +8,12 @@ body {
 }
 
 .banner {
-    font-family: AbeeZee;
-    color: orange;
+    font-family: Bitsumishi;
+    color: #e74c3c;
     display: flex;
     align-items: center;
     justify-content: center;
-    top: -10%;
-    /* margin-bottom: 70px;
-    margin-top: 30px; */
-    font-size: 60px;
+    font-size: 80px;
 }
 
 .btn {
@@ -136,17 +133,17 @@ body {
 }
 
 .list-select {
+    font-family: Cambria;
     height: 48px;
     font-size: 18px;
-    background-color: #06b300;
-    color: wheat;
+    background-color: #DAF7A6;
+    color: black;
     border: none;
 }
 
 .audio-player-cont {
     width: 600px;
     height: 210px;
-    background: #f3ebdc;
     box-shadow: 0 0 6px 2px #c7a8a8;
     color: #003ba9;
     font-family: verdana;
@@ -158,6 +155,11 @@ body {
 }
 
 .player {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    background-color: rgba(12, 12, 10, 0.8);
+    font-size: 12px;
+    color: cyan;
     float: right;
     margin: 7px;
 }
@@ -197,4 +199,24 @@ body {
 .volume-slider {
     width: 90px;
     margin-left: 5px;
+}
+
+#videoBG {
+    position: absolute;
+    top: -1%;
+    left: 0%;
+    z-index: -1;
+    width: 1366px;
+    height: 280px;
+    object-fit: cover;
+}
+
+#playerBG {
+    position: absolute;
+    top: 320px;
+    left: 270px;
+    z-index: -1;
+    width: 328px;
+    height: 210px;
+    object-fit: fill;
 }
