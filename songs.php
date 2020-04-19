@@ -75,7 +75,7 @@
 </style>
 
 <body>
-
+	<video src="" id="videoBG" autoplay muted loop></video>
 	<div class="header">
 		<h2 class="banner">WAVE STREAMING</h2>
 		<p>Scroll down and play a song!</p>
@@ -169,15 +169,7 @@
 									</label>
 								</a>
 								
-								<a href='
-									addplaylist.php?
-										u=" . $_SESSION['use'] . "
-										&s=" . $row['rate_serial'] . "
-										&t=" . $row['song_name'] . "
-									'
-									target='_blank' class='playlist'>
-									
-								</a>
+								<a href='addplaylist.php?u=" . $_SESSION['use'] . "&s=" . $row['rate_serial'] . "&t=" . $row['song_name'] . "&a=" . $row['artist'] . "'target='windw.open' ><img src='img/add.png' width='45px'></a>
 
 								<select class='rating' onchange='rateSong(this.value, "  . $row['rate_serial'] . ")'>
 									<option value=''>Rate</option>
@@ -332,7 +324,7 @@
 						document.getElementById("poster").src = poster[currentSong];
 						songTitle.textContent = (currentSong + 1) + ". " + songs2[currentSong].substring(6);
 						songArtist.textContent = "Artist: " + artist[currentSong];
-						nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs2[currentSong + 1 % songs2.length].substring(6);
+						nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs2[(currentSong + 1) % songs2.length].substring(6);
 						songRating.innerHTML = "<b>Song Rating: </b>" + rating[currentSong];
 						song.playbackRate = 1;
 						song.volume = volumeSlider.value;

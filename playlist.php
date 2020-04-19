@@ -1,19 +1,17 @@
 <?php
-    include_once('connection.php');
-    // echo "OK..!<br>";
-    $user_name = $_GET['u'];
-    $user_id = 0;
-    $list_id = $_GET['l'];
+    // include_once('connection.php');
+    // // echo "OK..!<br>";
+    // $user_name = $_GET['u'];
+    // $user_id = 0;
+    // $list_id = $_GET['l'];
     
-    $sql1 = "SELECT id FROM `waver` WHERE name = '$user_name'";
-    $result1 = mysqli_query($con,$sql1);
+    // $sql1 = "SELECT id FROM `waver` WHERE name = '$user_name'";
+    // $result1 = mysqli_query($con,$sql1);
 
-    while ($row = $result1->fetch_assoc()) {
-    $user_id =  $row['id'];
-    }
-    echo "
-        user id: $user_id <br> list id: $list_id
-    ";
+    // while ($row = $result1->fetch_assoc()) {
+    // $user_id =  $row['id'];
+    // }
+    // echo "        user id: $user_id <br> list id: $list_id    ";
 ?>
 <?php
 	session_start();
@@ -180,7 +178,7 @@
                 while ($row = $result1->fetch_assoc()) {
                 $user_id =  $row['id'];
                 }
-
+				$counter_id = 0;
 				$sql = "SELECT `song_url`, (`song_id`-2) AS `song_id`, `song_id`-1 AS serial, `song_id` AS rate_serial, `song_name`, `artist`,`poster`
                 FROM `song_list` 
                 WHERE song_id IN (
@@ -196,22 +194,14 @@
 						$items = $row;
 						echo "
 							<div >
-								<a href='JavaScript:playSong("  . $row['song_id'] . ")' class='button'>
+								<a href='JavaScript:playSong($counter_id)' class='button'>
 									<img src='" . $row['poster'] . "' height='90px' width='120px'>								
 									<label class='button'>
 										" . $row['song_name'] . " - " . $row['artist'] . "
 									</label>
 								</a>
 								
-								<a href='
-									addplaylist.php?
-										u=" . $_SESSION['use'] . "
-										&s=" . $row['rate_serial'] . "
-										&t=" . $row['song_name'] . "
-									'
-									target='_blank' class='playlist'>
-									
-								</a>
+								<a href='addplaylist.php?u=" . $_SESSION['use'] . "&s=" . $row['rate_serial'] . "&t=" . $row['song_name'] . "&a=" . $row['artist'] . "'target='windw.open' ><img src='img/add.png' width='45px'></a>
 
 								<select class='rating' onchange='rateSong(this.value, "  . $row['rate_serial'] . ")'>
 									<option value=''>Rate</option>
@@ -262,6 +252,7 @@
 							
 
 						";
+						$counter_id++;
 					}
 				} else {
 					echo "Error in execution";
@@ -333,10 +324,10 @@
 						rating = js_data4.toString().split(',');
 
 						for (var i = 0; i < songs2.length; i++) {
-							// console.log(songs2[i]);
+							console.log(songs2[i]);
 							// console.log(poster[i]);
 							// console.log(artist[i]);
-							console.log(rating[i]);
+							// console.log(rating[i]);
 						}
 					}
 					var songTitle = document.getElementById('songTitle');
@@ -370,8 +361,8 @@
 						song.src = songs2[currentSong];
 						document.getElementById("poster").src = poster[currentSong];
 						songTitle.textContent = (currentSong + 1) + ". " + songs2[currentSong].substring(6);
-						songArtist.textContent = "Artist: " + artist[currentSong];
-						nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs2[currentSong + 1 % songs2.length].substring(6);
+						songArtist.textContent = "Artist: " + artist[currentSong];						
+						nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs2[(currentSong + 1) % songs2.length].substring(6);
 						songRating.innerHTML = "<b>Song Rating: </b>" + rating[currentSong];
 						song.playbackRate = 1;
 						song.volume = volumeSlider.value;

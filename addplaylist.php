@@ -5,8 +5,6 @@
     // echo "<br>Song id: ";
     $song_id = $_GET['s'];
     // echo $song_id;
-    $song_title = $_GET['t'];
-    echo "<br> <h2> Song: $song_title </h2>";
 ?>
 
     <!DOCTYPE html>
@@ -24,6 +22,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>AJAX DATABASE</title>
+        <link rel="stylesheet" href="playlist.css">
     </head>
 
     <body>
@@ -39,6 +38,12 @@
         <br>
         <div id="txtHint">
             song info...
+            <?php
+                $song_title = $_GET['t'];
+                echo "<br> <h2> Song: $song_title </h2>"; 
+                $artist = $_GET['a'];
+                echo "<br> <h2> Artist: $artist</h2>"; 
+            ?>
         </div>
 
         <div id="newList" style="display: none">
@@ -46,9 +51,16 @@
                 <input type="text" placeholder="Playlist name">
                 <input type="submit" value="CREATE">
             </form>
+            
+        </div>
+        <div class="button">
+            <a href="javascript:close_window();">BACK</a>
         </div>
 
         <script>
+            function close_window() {
+                window.close();
+            }
             function addToList(user_name, list_id, song_id) {
                 var xhttp;
                 var x = document.getElementById('newList');
