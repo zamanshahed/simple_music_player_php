@@ -45,11 +45,13 @@
 	<title>Register now!</title>
 	<link rel="stylesheet" type="text/css" href="register.css">
 	<link href="https://fonts.googleapis.com/css?family=ABeeZee|Trade+Winds&display=swap" rel="stylesheet">
+	<link href="//db.onlinewebfonts.com/c/f518e4e7999e3a3b645a9605c23e2cf6?family=Bitsumishi" rel="stylesheet" type="text/css"/> 
+
 </head>
 <body>
 	<form class="canvas" action="register.php" method="post">
 
-		<h1 class="banner">Register</h1>	
+		<h1 class="banner">WAVE : Register</h1>	
 		<div class="container">
 			<input class="input" type="text" name="username" placeholder="Name">
 			<input class="input" type="text" name="email" placeholder="Email">

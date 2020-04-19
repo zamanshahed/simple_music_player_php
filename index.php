@@ -26,13 +26,14 @@ if (isset($_POST['login'])) {		//when the user clicked login button..
 <head>
 	<title>Login now!</title>
 	<link href="https://fonts.googleapis.com/css?family=ABeeZee|Trade+Winds&display=swap" rel="stylesheet">
+	<link href="//db.onlinewebfonts.com/c/f518e4e7999e3a3b645a9605c23e2cf6?family=Bitsumishi" rel="stylesheet" type="text/css"/> 
 	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
 	<form action="" method="post">
 
-		<h1 class="banner">WAVE:LOGIN</h1>
+		<h1 class="banner">WAVE : LOGIN</h1>
 		<div class="container">
 			<input type="text" name="user" placeholder="User Name" require>
 			<input type="password" name="password" placeholder="Password" required>

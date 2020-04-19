@@ -24,6 +24,7 @@
 	}
 
 	.header {
+		background-color: rgba(12, 12, 10, 0.4);
 		padding: 2px;
 		text-align: center;
 	}
@@ -50,12 +51,12 @@
 	}
 
 	#navbar a.active1 {
-		background-color: #C70039;
+		background-color:  #c0392b ;
 		color: white;
 	}
 
 	#navbar a.active {
-		background-color:  #581845;
+		background-color:   #34495e 	;
 		color: white;
 	}
 

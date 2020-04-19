@@ -39,6 +39,7 @@
 	}
 
 	.header {
+		background-color: rgba(12, 12, 10, 0.4);
 		padding: 2px;
 		text-align: center;
 	}
@@ -64,7 +65,7 @@
 	}
 
 	#navbar a.active1 {
-		background-color: red;
+		background-color: #e74c3c;
 		color: white;
 	}
 

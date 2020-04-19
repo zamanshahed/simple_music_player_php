@@ -1,10 +1,10 @@
 body {
     font-family: AbeeZee;
-    background: #dad299;
+    background: #0F2027;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #dad299, #b0dab9);
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #dad299, #b0dab9);
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -16,8 +16,9 @@ body {
 }
 
 .banner {
-    font-family: AbeeZee;
-    color: #E35703CF;
+    letter-spacing: 15px;
+    font-family: Bitsumishi;
+    color: #e74c3c;
     font-size: 450%;
     position: fixed;
     left: 50%;
@@ -26,12 +27,12 @@ body {
 }
 
 .btn {
-    background-color: #4CAF50;
+    background-color: #2C5364;
     height: 55px;
     width: 105%;
     border: none;
     border-radius: 5px;
-    color: white;
+    color: #e74c3c;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -41,13 +42,13 @@ body {
     margin-bottom: 20px;
     transition-duration: 0.4s;
     cursor: pointer;
-    background-color: white;
+    background-color: #aab7b8;
     color: black;
-    border: 2px solid #4CAF50;
+    border: 2px solid #2C5364;
 }
 
 .btn:hover {
-    background-color: #4CAF50;
+    background-color: #2C5364;
     color: white;
 }
 
@@ -58,4 +59,6 @@ input {
     height: 35px;
     margin: 3% auto;
     border-radius: 5px;
+    color: white;
+    background-color: #203A43;
 }
