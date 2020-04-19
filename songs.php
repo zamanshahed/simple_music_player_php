@@ -30,7 +30,7 @@
 	}
 
 	#navbar {
-		font-family: Cambria;
+		font-family: AbeeZee;
 		overflow: hidden;
 		background-color: #333;
 	}
@@ -80,11 +80,11 @@
 		<h1 class="banner" >W A V E</h1>
 		<p style="
 			color:darkorange;
-			font-family: arial;
-			font-size:15px;
+			font-family: AbeeZee;
+			font-size:14px;
 			letter-spacing:3px;
 			font-weight:bold;
-		">music is what feeling sounds like !</p>
+		">music is - what feeling sounds like !</p>
 		<video id="videoBG" autoplay muted loop>
 			<source src="video/bg.mp4" type="video/mp4">
 		</video>

@@ -138,7 +138,7 @@ body {
 }
 
 .list-select {
-    font-family: Cambria;
+    font-family: AbeeZee;
     height: 48px;
     font-size: 18px;
     background-color: #21618c;
@@ -160,10 +160,10 @@ body {
 }
 
 .player {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: AbeeZee;
     font-weight: bold;
     background-color: rgba(12, 12, 10, 0.6);
-    font-size: 12px;
+    font-size: 14px;
     color: cyan;
     float: right;
     margin: 7px;
