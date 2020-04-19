@@ -380,7 +380,7 @@
 					}
 
 					function next() {
-						currentSong = currentSong + 1 % songs2.length;
+						currentSong = (currentSong + 1) % songs2.length;
 						document.getElementById("poster").src = poster[currentSong + 1];
 						playSong(currentSong);
 					}
