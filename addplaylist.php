@@ -1,10 +1,10 @@
 <?php
-    // echo "User: ";
-    // $user = $_GET['u'];
-    // echo $user;
-    // echo "<br>Song id: ";
-    // $song_id = $_GET['s'];
-    // echo $song_id;
+    // session_start();
+    // if(!isset($_SESSION['use'])){		//if the session is not present then force login
+    //     header('location:index.php');
+    // }
+    $song_id = $_GET['s'];
+    $user_name = $_GET['u'];
 ?>
 
     <!DOCTYPE html>
@@ -31,6 +31,7 @@
         <div class="canvas">
             <h1 class="banner">WAVE : PLAYLIST</h1>
             <form action="">
+            <select name='songs' id='drop-box' class='list-select' onChange="addToList('<?php echo $user_name ?>', this.value, <?php echo $song_id ?>)">
                 <?php 
                     include_once('connection.php');                    
                     $song_id = $_GET['s'];
@@ -48,20 +49,19 @@
                     )";
 
                     echo "
-                        <select name='songs' id='drop-box' class='list-select' onChange='addToList('$user_name', this.value, $song_id)'>
                         <option value='' selected>Add to playlist</option>
                         <option value='newList'>CREATE NEW LIST</option>
                     ";
                     $result2 = mysqli_query($con,$sql2);
                     while ($row = $result2->fetch_assoc()) {
                         echo"
-                            <option value=".$row['list_id'].">".$row['list_name']."</option>
+                            <option value='".$row['list_id']."'>".$row['list_name']."</option>
                         ";
                     }
                     echo "</select>";
 
                 ?>
-                <!-- <select name="songs" id="drop-box" class="list-select" onChange="addToList('<?php echo $user ?>', this.value, <?php echo $song_id ?>)">
+                <!-- <select name="songs" id="drop-box" class="list-select" onChange="addToList()">
                     <option value="" selected>Add to playlist</option>
                     <option value="newList">CREATE NEW LIST</option>
                     <option value="1">LISTEN LATER</option>
@@ -84,9 +84,9 @@
             </div>
 
             <div id="newList" style="display: none">
-                <form action="">
-                    <input type="text" placeholder="Playlist name">
-                    <input type="submit" class="btn" value="CREATE">
+                <form method="POST">
+                    <input type="text" placeholder="Playlist name" name="listName">
+                    <input type="submit" class="btn" value="SUBMIT" name="submit">
                 </form>
                 
             </div>
@@ -143,3 +143,33 @@
     </body>
 
     </html>
+
+<?php
+    include_once('connection.php');
+    if (isset($_POST['SUBMIT']) || isset($_POST['submit'])) {		//when the user clicked CREATE button..
+        $list_name = $_POST['listName'];
+        echo " >>List Name:".$list_name;
+        
+        //insert the list_name in wave_list table for creating unique list_id
+        $sql01 = "INSERT INTO `wave_list`(`list_name`) VALUES ('".$list_name."')";
+        $result01 = mysqli_query($con, $sql01);
+        echo " >>sql 01 done..! ";
+
+        $list_id = 0;
+        //getting list_id for further use
+        $sql03 = "SELECT list_id FROM `wave_list` WHERE list_name='".$list_name."'";
+        $result03 = mysqli_query($con,$sql03);
+        while ($row02 = $result03->fetch_assoc()) {
+            $list_id =  $row02['list_id'];
+        }
+        echo " >>sql 03 done..! ";
+
+        //Finally creating entry for owner of the list in waving table
+        $sql04 = "INSERT INTO `waving`(`user_id`, `list_id`) VALUES (".$user_id.",".$list_id.")";
+        $result04 = mysqli_query($con, $sql04);
+        echo "All done...!";
+        //after all done, making a reload with necessary parameters passing
+        // header("location:addplaylist.php?u=".$user_name."&s=".$song_id."&t=".$song_title."&a=".$artist."");
+                
+    }
+?>
