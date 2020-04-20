@@ -1,9 +1,9 @@
 <?php
     // echo "User: ";
-    $user = $_GET['u'];
+    // $user = $_GET['u'];
     // echo $user;
     // echo "<br>Song id: ";
-    $song_id = $_GET['s'];
+    // $song_id = $_GET['s'];
     // echo $song_id;
 ?>
 
@@ -31,12 +31,42 @@
         <div class="canvas">
             <h1 class="banner">WAVE : PLAYLIST</h1>
             <form action="">
-                <select name="songs" id="drop-box" class="list-select" onChange="addToList('<?php echo $user ?>', this.value, <?php echo $song_id ?>)">
+                <?php 
+                    include_once('connection.php');                    
+                    $song_id = $_GET['s'];
+                    $user_name = $_GET['u'];
+                    $user_id = 0;
+                    $sql1 = "SELECT id FROM `waver` WHERE name = '$user_name'";
+                    $result1 = mysqli_query($con,$sql1);
+
+                    while ($row = $result1->fetch_assoc()) {
+                    $user_id =  $row['id'];
+                    }
+
+                    $sql2 = "SELECT list_name, list_id FROM `wave_list` WHERE list_id IN (
+                        SELECT DISTINCT list_id FROM waving WHERE user_id = $user_id
+                    )";
+
+                    echo "
+                        <select name='songs' id='drop-box' class='list-select' onChange='addToList('$user_name', this.value, $song_id)'>
+                        <option value='' selected>Add to playlist</option>
+                        <option value='newList'>CREATE NEW LIST</option>
+                    ";
+                    $result2 = mysqli_query($con,$sql2);
+                    while ($row = $result2->fetch_assoc()) {
+                        echo"
+                            <option value=".$row['list_id'].">".$row['list_name']."</option>
+                        ";
+                    }
+                    echo "</select>";
+
+                ?>
+                <!-- <select name="songs" id="drop-box" class="list-select" onChange="addToList('<?php echo $user ?>', this.value, <?php echo $song_id ?>)">
                     <option value="" selected>Add to playlist</option>
                     <option value="newList">CREATE NEW LIST</option>
                     <option value="1">LISTEN LATER</option>
                     <option value="2">FAVORITE</option>
-                </select>
+                </select> -->
             </form>
             <br>
             <div id="txtHint">
