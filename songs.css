@@ -1,9 +1,4 @@
 body {
-    overflow-y: scroll;
-    scrollbar-color: rebeccapurple green;
-    scrollbar-width: thin;
-    overflow: auto;
-    /* overflow: scroll; */
     background: #0F2027;
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
@@ -224,17 +219,4 @@ body {
     width: 328px;
     height: 210px;
     object-fit: fill;
-}
-
-::-webkit-scrollbar {
-    opacity: 0;
-    background: transparent;
-}
-
-::-webkit-scrollbar:hover {
-    opacity: 1;
-}
-
-.container:hover::-webkit-scrollbar-thumb {
-    background: red;
 }
