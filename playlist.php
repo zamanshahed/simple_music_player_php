@@ -92,7 +92,7 @@
 		</video>
 	</div>
 
-	<div id="navbar">
+	<div id="navbar" style="text-transform: uppercase;">
 		<a class="active1" href="logout.php">LOGOUT 
 			(<?php
 				echo $_SESSION['use'] ;

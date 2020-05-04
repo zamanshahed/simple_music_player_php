@@ -102,10 +102,20 @@ input {
 .button a {
     position: fixed;
     top: 88%;
-    left: 40%;
+    left: 35%;
     font-family: Bitsumishi;
     letter-spacing: 9px;
     width: 15%;
     height: 20px;
     font-size: 25px;
+}
+.button2 input {
+    position: fixed;
+    top: 55%;
+    left: 55%;
+    font-family: Bitsumishi;
+    letter-spacing: 9px;
+    width: 300px;
+    height: 80px;
+    font-size: 35px;
 }
