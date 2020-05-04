@@ -77,7 +77,9 @@
 
 <body>
 	<div class="header">
-		<h1 class="banner" >W A V E</h1>
+		<div class="home" style="cursor: pointer;" onclick="window.location='songs.php'">
+			<h1 class="banner">W A V E</h1>
+		</div>
 		<p style="
 			color:darkorange;
 			font-family: AbeeZee;
@@ -127,14 +129,42 @@
                     }
                     echo "</select>";
 
+                ?>	
+
+
+                <!-- manage list -->
+
+                <?php 
+                    include_once('connection.php');
+                    $user_name = $_SESSION['use'];
+                    $user_id = 0;
+                    $sql1 = "SELECT id FROM `waver` WHERE name = '$user_name'";
+                    $result1 = mysqli_query($con,$sql1);
+
+                    while ($row = $result1->fetch_assoc()) {
+                    	$user_id =  $row['id'];
+                    }
+
+                    $sql2 = "SELECT list_name, list_id FROM `wave_list` WHERE list_id IN (
+                        SELECT DISTINCT list_id FROM waving WHERE user_id = $user_id
+                    )";
+
+                    echo "
+					<select class='list-select' onchange='location = this.value'>
+						<option value='' selected>MANAGE PLAYLIST</option>
+						<option value='songs.php'>ALL SONGS</option>
+                    ";
+                    $result2 = mysqli_query($con,$sql2);
+                    while ($row = $result2->fetch_assoc()) {
+                        echo"							
+							<option value='manage.php?u=".$_SESSION['use']."&l=".$row['list_id']."'>".$row['list_name']."</option>
+							
+                        ";
+                    }
+                    echo "</select>";
+
                 ?>
 
-		<!-- <select class="list-select" onchange="location = this.value">
-			<option value="">SELECT PLAYLIST</option>
-			<option value="playlist.php?u=<?php echo $_SESSION['use'] ?>&l=1">LISTEN LATER</option>
-			<option value="playlist.php?u=<?php echo $_SESSION['use'] ?>&l=2">FAVOURITES</option>
-			<option value="songs.php">ALL SONGS</option>
-		</select> -->
 
 	</div>
 	<br>

@@ -142,39 +142,7 @@
 		<!-- <a href="javascript:void(0)">Contact</a> -->
 	</div>
 	<br>
-	<div id="player">
-		<div class="audio-player-cont">
-			<div class="logo">
-				<img id="poster" src="img/nothing.png" width="270px;" height="210px" style="margin-left: 2px;" />
-			</div>
-			<div class="player">
-				<div id="songTitle" class="song-title">Song title goes here</div>
-				<div id="songArtist" class="song-title">Song artist goes here</div>
-				<input id="songSlider" class="song-slider" type="range" min="0" step="1" onchange="seekSong()" />
-				<div>
-					<div id="currentTime" class="current-time">00:00</div>
-					<div id="duration" class="duration">00:00</div>
-				</div>
-				<div class="controllers">
-					<video id="playerBG" autoplay muted loop>
-						<source src="video/plbg.mp4" type="video/mp4">
-					</video>
-
-					<img src="img/previous.png" style="margin-top: 15px;" width="30px" onclick="previous();" />
-					<!-- <img src="images/backward.png" width="30px" onclick="decreasePlaybackRate();" /> -->
-					<img id="play" src="img/play.png" width="40px" style="margin-top: 15px;" onclick="playOrPauseSong(this);" />
-					<!-- <img src="images/forward.png" width="30px" onclick="increasePlaybackRate();" /> -->
-					<img src="img/next.png" width="30px" onclick="next();" style="margin-top: 15px;" />
-					<img src="img/volume.png" width="35px" style="margin-top: 15px; margin-left:13px;" />
-					<input id="volumeSlider" style="margin-top: 15px;" class="volume-slider" type="range" min="0" max="1" step="0.01" onchange="adjustVolume()" />
-					<!-- <img src="images/volume-up.png" width="15px" style="margin-left:2px;" /> -->
-				</div>
-				<div id="nextSongTitle" class="song-title"><b>Next Song :</b>Next song title goes here...</div>
-				<div id="songRating" class="song-title"><b>Song Rating :</b>Song Rating goes here...</div>
-			</div>
-		</div>
-		<!-- <script type="text/javascript" src="player.js"></script> -->
-	</div>
+	
 
 
 
@@ -224,16 +192,9 @@
 									</label>
 								</a>
 								
-								<a href='addplaylist.php?u=" . $_SESSION['use'] . "&s=" . $row['rate_serial'] . "&t=" . $row['song_name'] . "&a=" . $row['artist'] . "'target='windw.open' ><img src='img/add.png' width='45px'></a>
+								<a href='delete.php?u=" . $_SESSION['use'] . "&s=" . $row['rate_serial'] . "&t=" . $row['song_name'] . "&a=" . $row['artist'] . "'target='' ><img src='img/delete.png' width='45px'></a>
 
-								<select class='rating' onchange='rateSong(this.value, "  . $row['rate_serial'] . ")'>
-									<option value=''>Rate</option>
-									<option value='1'>1</option>
-									<option value='2'>2</option>
-									<option value='3'>3</option>
-									<option value='4'>4</option>
-									<option value='5'>5</option>
-								</select>
+								
 								<script>
 									function addToList(user_name, list_id, song_id) {
 										var xhttp;
