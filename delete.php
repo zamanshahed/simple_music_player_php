@@ -20,7 +20,7 @@
     <link href="//db.onlinewebfonts.com/c/f518e4e7999e3a3b645a9605c23e2cf6?family=Bitsumishi" rel="stylesheet" type="text/css"/> 
 	<link href="https://fonts.googleapis.com/css?family=ABeeZee|Trade+Winds&display=swap" rel="stylesheet">
         <title>DELETE ?</title>
-        <link rel="stylesheet" href="playlist.css">
+        <link rel="stylesheet" href="delete.css">
     </head>
 
     <body>
@@ -64,6 +64,22 @@
 <?php
     include_once('connection.php');
     if (isset($_POST['SUBMIT']) || isset($_POST['submit'])) {		//when the user clicked CREATE button..
+
+    $user_id = 0;
+    $list_id = $_GET['l'];
+    $song_id = $_GET['s'];
+    $user_name = $_GET['u'];
+
+    $sql1 = "SELECT id FROM `waver` WHERE name = '$user_name'";
+    $result1 = mysqli_query($con,$sql1);
+
+    while ($row = $result1->fetch_assoc()) {
+        $user_id =  $row['id'];
+    }
+
+    $sql2 = "DELETE FROM `waving` WHERE `list_id` =$list_id AND user_id = $user_id AND song_id = $song_id";
+    $result2 = mysqli_query($con,$sql2);   
+
     echo '<script language="javascript">';
     echo 'alert("Song Successfully Deleted..!")';        
     echo '</script>';

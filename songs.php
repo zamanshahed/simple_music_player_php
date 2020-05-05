@@ -125,7 +125,7 @@
                     $result2 = mysqli_query($con,$sql2);
                     while ($row = $result2->fetch_assoc()) {
                         echo"							
-							<option value='playlist.php?u=".$_SESSION['use']."&l=".$row['list_id']."'>".$row['list_name']."</option>
+							<option style='text-transform: uppercase;' value='playlist.php?u=".$_SESSION['use']."&l=".$row['list_id']."'>".$row['list_name']."</option>
 							
                         ";
                     }

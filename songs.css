@@ -132,7 +132,9 @@ body {
     top: 5px;
 }
 
-.list-select {
+.list-select, .list-select option {
+    text-transform: uppercase;
+    position: relative;
     font-family: AbeeZee;
     height: 48px;
     font-size: 18px;

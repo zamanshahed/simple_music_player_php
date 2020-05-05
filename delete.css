@@ -75,11 +75,11 @@ input {
 .btn {
     background-color: #2C5364;
     height: 55px;
-    width: 105%;
+    /*width: 105%;*/
     border: none;
     border-radius: 5px;
     color: #e74c3c;
-    padding: 16px 32px;
+    /*padding: 16px 32px;*/
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -101,22 +101,23 @@ input {
 .button a {
     position: fixed;
     top: 88%;
-    left: 35%;
+    left: 21%;
     font-family: Bitsumishi;
+    padding: 16px 32px;
     letter-spacing: 9px;
-    width: 15%;
+    width: 6%;
     height: 20px;
     font-size: 25px;
 }
 .button2 input {
     position: fixed;
-    top: 55%;
+    top: 89%;
     left: 55%;
     font-family: Bitsumishi;
     letter-spacing: 9px;
-    width: 300px;
-    height: 80px;
-    font-size: 35px;
+    width: 14%;
+    height: 9%;
+    font-size: 30px;
 }
 
 
