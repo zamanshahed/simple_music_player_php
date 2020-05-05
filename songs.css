@@ -229,3 +229,36 @@ body {
     text-decoration: blink;
     font-family: Bitsumishi;
 }
+
+.delete-list {
+    padding: 15px;
+    color: #FFFFFF;
+    font-family: AbeeZee;
+}
+
+.delete-button {
+    font-family: AbeeZee;   
+    font-weight: bolder;
+    background-color: #2C5364;
+    height: 55px;
+    width: 65%;
+    border: none;
+    border-radius: 5px;
+    color: #e74c3c;    
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 21px;
+    margin: 4px 2px;
+    margin-bottom: 20px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: #aab7b8;
+    color: black;
+    border: 2px solid #2C5364;
+}
+
+.delete-button:hover {
+    background-color: #e74c3c;
+    color: white;
+}

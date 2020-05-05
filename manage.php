@@ -142,19 +142,54 @@
                     }
 
                 ?>
-
-	
-		<!-- <select class="list-select" onchange="location = this.value">
-			<option value="">SELECT PLAYLIST</option>
-			<option value="playlist.php?u=<?php echo $_SESSION['use'] ?>&l=1">LISTEN LATER</option>
-			<option value="playlist.php?u=<?php echo $_SESSION['use'] ?>&l=2">FAVOURITES</option>
-			<option value="songs.php">ALL SONGS</option>
-		</select> -->
-
-		<!-- <a href="javascript:void(0)">Contact</a> -->
 	</div>
 	<br>
 	
+	<div id="player">
+		<h3 class="delete-list">Delete the entire playlist?</h3>
+		<form method="POST">
+			<input class="delete-button" type="submit" name="submit" value="DELETE">
+		</form>
+
+<?php
+    include_once('connection.php');
+    if (isset($_POST['SUBMIT']) || isset($_POST['submit'])) {		//when the user clicked CREATE button..
+
+    $user_id = 0;
+    $list_id = $_GET['l'];
+    $user_name = $_GET['u'];
+
+    $sql1 = "SELECT id FROM `waver` WHERE name = '$user_name'";
+    $result1 = mysqli_query($con,$sql1);
+
+    while ($row = $result1->fetch_assoc()) {
+        $user_id =  $row['id'];
+    }
+
+    $sql2 = "DELETE FROM `waving` WHERE `list_id` =$list_id AND user_id = $user_id";
+    $result2 = mysqli_query($con,$sql2);
+    
+    $sql3 = "DELETE FROM `wave_list` WHERE list_id IN (
+SELECT 
+    wave_list.list_id
+FROM
+    wave_list
+LEFT JOIN
+    waving USING (list_id)
+WHERE
+    waving.list_id IS NULL
+)";
+    $result3 = mysqli_query($con,$sql3);   
+
+
+    echo '<script language="javascript">';
+    echo 'alert("List has been deleted..!")';        
+    echo '</script>';
+    echo " <script> window.location.href='songs.php?' </script>";
+    }
+?>
+
+	</div>
 
 
 
@@ -424,25 +459,6 @@
 					function adjustVolume() {
 						song.volume = volumeSlider.value;
 					}
-
-					// function increasePlaybackRate() {
-					// 	songs.playbackRate += 0.5;
-					// }
-
-					// function decreasePlaybackRate() {
-					// 	songs.playbackRate -= 0.5;
-					// }
-					// var songUrl = 'hello there';
-
-					// function testOne(songId) {
-					// 	alert(phpVars[0]);
-					// }
-
-					// function flash(one) {
-					// 	var x = "<?php echo $items[0] ?>";
-					// 	alert("From songs.php: " + x);
-
-					// }
 				</script>
 
 			</div>
