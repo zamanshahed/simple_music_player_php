@@ -53,6 +53,8 @@
 	#navbar a.active1 {
 		background-color: #e74c3c;
 		color: white;
+		font-family: AbeeZee;
+		font-weight: bolder;
 	}
 
 	#navbar a.active {
@@ -98,7 +100,7 @@
 				echo $_SESSION['use'] ;
 			?>)
 		</a>
-		<a class="active" href="uploader.php">UPLOADER</a>
+		
 
 		<?php 
                     include_once('connection.php');
@@ -117,17 +119,27 @@
 
                     echo "
 					<select class='list-select' onchange='location = this.value'>
-						<option value='' selected>SELECT PLAYLIST</option>
-						<option value='songs.php'>ALL SONGS</option>
+						<option value='' selected>MANAGE PLAYLIST</option>
                     ";
                     $result2 = mysqli_query($con,$sql2);
                     while ($row = $result2->fetch_assoc()) {
                         echo"							
-							<option value='playlist.php?u=".$_SESSION['use']."&l=".$row['list_id']."'>".$row['list_name']."</option>
+							<option value='manage.php?u=".$_SESSION['use']."&l=".$row['list_id']."'>".$row['list_name']."</option>
 							
                         ";
                     }
                     echo "</select>";
+
+                    $list_id = $_GET['l'];
+
+                    $sql3 = "SELECT list_name FROM `wave_list` WHERE list_id =$list_id";
+                    $result3 = mysqli_query($con,$sql3);
+
+                    while ($row = $result3->fetch_assoc()) {
+                    	echo "<label class='list_name'>PLAYLIST: ";
+                    	echo $row['list_name'];
+                    	echo "</label>";
+                    }
 
                 ?>
 
@@ -192,7 +204,7 @@
 									</label>
 								</a>
 								
-								<a href='delete.php?u=" . $_SESSION['use'] . "&s=" . $row['rate_serial'] . "&t=" . $row['song_name'] . "&a=" . $row['artist'] . "'target='' ><img src='img/delete.png' width='45px'></a>
+								<a href='delete.php?u=" . $_SESSION['use'] . "&l=" . $_GET['l'] . "&s=" . $row['rate_serial'] . "&t=" . $row['song_name'] . "&a=" . $row['artist'] . "'target='' ><img src='img/delete.png' width='45px'></a>
 
 								
 								<script>

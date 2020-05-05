@@ -53,6 +53,8 @@
 	#navbar a.active1 {
 		background-color:  #c0392b ;
 		color: white;
+		font-family: AbeeZee;
+		font-weight: bolder;
 	}
 
 	#navbar a.active {
@@ -118,7 +120,7 @@
                     echo "
 					<select class='list-select' onchange='location = this.value'>
 						<option value='' selected>SELECT PLAYLIST</option>
-						<option value='songs.php'>ALL SONGS</option>
+						
                     ";
                     $result2 = mysqli_query($con,$sql2);
                     while ($row = $result2->fetch_assoc()) {
@@ -152,7 +154,6 @@
                     echo "
 					<select class='list-select' onchange='location = this.value'>
 						<option value='' selected>MANAGE PLAYLIST</option>
-						<option value='songs.php'>ALL SONGS</option>
                     ";
                     $result2 = mysqli_query($con,$sql2);
                     while ($row = $result2->fetch_assoc()) {

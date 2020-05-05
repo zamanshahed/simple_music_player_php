@@ -44,12 +44,15 @@
                 
             </div>
             <div class="button2">
-                <form method="POST" action="delete.php">
+                <form method="POST" action="">
                     <input type="submit" class="btn" name="submit" value="DELETE">
                 </form>
             </div>
             <div class="button">
-                <a class="btn" href="manage.php">BACK</a>
+                <!-- <a class="btn" href="manage.php">BACK</a> -->
+                <?php 
+                    echo "<a class='btn' href='manage.php?u=".$_GET['u']."&l=".$_GET['l']."'>BACK</a>";
+                ?>
             </div>
 
            
@@ -61,6 +64,9 @@
 <?php
     include_once('connection.php');
     if (isset($_POST['SUBMIT']) || isset($_POST['submit'])) {		//when the user clicked CREATE button..
-        echo "SUBMIT RECORDED!!";        
+    echo '<script language="javascript">';
+    echo 'alert("Song Successfully Deleted..!")';        
+    echo '</script>';
+    echo " <script> window.location.href='manage.php?u=".$_GET['u']."&l=".$_GET['l']."  ' </script>";
     }
 ?>

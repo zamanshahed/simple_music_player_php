@@ -220,3 +220,10 @@ body {
     height: 210px;
     object-fit: fill;
 }
+
+.list_name {
+    padding: 15px;
+    color: #FFFFFF;
+    text-decoration: blink;
+    font-family: Bitsumishi;
+}
